@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "development": "nodemon src/index",
-    "production": "node src/index"
+    "production": "export PORT=80 && node src/index"
   },
   "keywords": [],
   "author": "",
