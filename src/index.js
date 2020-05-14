@@ -2,6 +2,7 @@ const express = require("express");
 const rp = require("request-promise");
 
 const app = express();
+const timeout = 600000;
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -29,14 +30,16 @@ app.post("/app", async (req, res) => {
       headers: body.headers,
       simple: false,
       json: true,
-      resolveWithFullResponse: true
+      resolveWithFullResponse: true,
+      timeout
     });
   } else if (body.method === "GET") {
     response = await rp.get(body.url, {
       headers: body.headers,
       simple: false,
       json: true,
-      resolveWithFullResponse: true
+      resolveWithFullResponse: true,
+      timeout
     });
   } else if (body.method === "PATCH") {
     response = await rp.patch(body.url, {
@@ -44,7 +47,8 @@ app.post("/app", async (req, res) => {
       headers: body.headers,
       simple: false,
       json: true,
-      resolveWithFullResponse: true
+      resolveWithFullResponse: true,
+      timeout
     });
   } else if (body.method === "PUT") {
     response = await rp.put(body.url, {
@@ -52,7 +56,8 @@ app.post("/app", async (req, res) => {
       headers: body.headers,
       simple: false,
       json: true,
-      resolveWithFullResponse: true
+      resolveWithFullResponse: true,
+      timeout
     });
   } else if (body.method === "DELETE") {
     response = await rp.delete(body.url, {
@@ -60,7 +65,8 @@ app.post("/app", async (req, res) => {
       headers: body.headers,
       simple: false,
       json: true,
-      resolveWithFullResponse: true
+      resolveWithFullResponse: true,
+      timeout
     });
   } else if (body.method === "OPTIONS") {
     response = await rp(body.url, {
@@ -69,7 +75,8 @@ app.post("/app", async (req, res) => {
       headers: body.headers,
       simple: false,
       json: true,
-      resolveWithFullResponse: true
+      resolveWithFullResponse: true,
+      timeout
     });
   }
   res.status(response.statusCode).json(response.body);
