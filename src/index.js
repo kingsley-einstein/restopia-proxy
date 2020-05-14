@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
 app.post("/app", async (req, res) => {
   const { body } = req;
   let response;
+  console.log(body);
   if (body.method === "POST") {
     response = await rp.post(body.url, {
       [body.type === "json" ? "body" : body.type === "urlencoded" ? "form" : "formData"]: body.body,
